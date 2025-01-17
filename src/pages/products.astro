@@ -1,0 +1,20 @@
+---
+import { useState } from 'react';
+import ProductForm from '../components/Product/ProductForm.astro';
+import ProductList from '../components/Product/ProductList.astro';
+
+const [products, setProducts] = useState([]);
+
+async function fetchProducts() {
+  const response = await fetch('/api/products');
+  const data = await response.json();
+  setProducts(data);
+}
+async function addProduct(product) {
+  await fetch('/api/products', { method: 'POST', body: JSON.stringify(product), headers: { 'Content-Type': 'application/json' } });
+  fetchProducts();
+}
+---
+<button on:click={fetchProducts}>Load Products</button>
+<ProductForm onSubmit={addProduct} />
+<ProductList products={products} />

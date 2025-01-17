@@ -1,0 +1,10 @@
+---
+const { onSubmit } = Astro.props;
+let name = '';
+let price = '';
+---
+<form onSubmit={(e) => { e.preventDefault(); onSubmit({ name, price }); }}>
+  <input type="text" placeholder="Name" bind:value={name} />
+  <input type="number" placeholder="Price" bind:value={price} />
+  <button type="submit">Add Product</button>
+</form>

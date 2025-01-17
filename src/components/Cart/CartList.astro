@@ -1,0 +1,9 @@
+---
+import CartItem from './CartItem.astro';
+const { items } = Astro.props;
+---
+<ul>
+  {items.map((item) => (
+    <CartItem {...item} />
+  ))}
+</ul>

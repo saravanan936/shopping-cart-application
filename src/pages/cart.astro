@@ -1,0 +1,13 @@
+---
+import { useState } from 'react';
+import CartList from '../components/Cart/CartList.astro';
+const [cart, setCart] = useState([]);
+
+async function fetchCart() {
+  const response = await fetch('/api/cart');
+  const data = await response.json();
+  setCart(data);
+}
+---
+<button on:click={fetchCart}>Load Cart</button>
+<CartList items={cart} />
